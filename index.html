@@ -1,0 +1,116 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="description" content="A calm, dependency-free daily task board." />
+    <title>Daily Focus Board</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Space+Grotesk:wght@500;600;700&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="styles.css" />
+    <script src="app.js" defer></script>
+  </head>
+  <body>
+    <main class="app-shell">
+      <section class="hero" aria-labelledby="page-title">
+        <div>
+          <p class="eyebrow">A tiny place for today</p>
+          <h1 id="page-title">Daily Focus Board</h1>
+          <p class="hero-copy">
+            Keep the next right things visible. Your board stays in this browser,
+            with no account and no setup.
+          </p>
+        </div>
+        <div class="date-card" aria-label="Today">
+          <span class="date-card__label">TODAY</span>
+          <strong id="today-date">—</strong>
+        </div>
+      </section>
+
+      <section class="stats-grid" aria-label="Today's progress">
+        <article class="stat-card stat-card--progress">
+          <div class="progress-ring" id="progress-ring" aria-label="0 percent complete">
+            <span id="progress-percent">0%</span>
+          </div>
+          <div>
+            <p class="stat-label">Daily progress</p>
+            <p class="stat-value"><span id="completed-count">0</span> of <span id="total-count">0</span> done</p>
+            <p class="stat-note" id="progress-message">Start with one small win.</p>
+          </div>
+        </article>
+        <article class="stat-card">
+          <span class="stat-icon" aria-hidden="true">✦</span>
+          <div>
+            <p class="stat-label">Open focus</p>
+            <p class="stat-value" id="open-count">0 tasks</p>
+            <p class="stat-note">Less noise, more momentum.</p>
+          </div>
+        </article>
+        <article class="stat-card">
+          <span class="stat-icon stat-icon--warm" aria-hidden="true">☼</span>
+          <div>
+            <p class="stat-label">Board mode</p>
+            <p class="stat-value">Local only</p>
+            <p class="stat-note">Saved automatically in your browser.</p>
+          </div>
+        </article>
+      </section>
+
+      <section class="board-card" aria-labelledby="board-title">
+        <div class="board-heading">
+          <div>
+            <p class="eyebrow">Make room for what matters</p>
+            <h2 id="board-title">Today's tasks</h2>
+          </div>
+          <button class="text-button" id="clear-completed" type="button">Clear completed</button>
+        </div>
+
+        <form class="task-form" id="task-form">
+          <label class="sr-only" for="task-title">Task title</label>
+          <input
+            id="task-title"
+            name="title"
+            type="text"
+            maxlength="100"
+            placeholder="What would make today feel meaningful?"
+            autocomplete="off"
+            required
+          />
+          <label class="sr-only" for="task-category">Task category</label>
+          <select id="task-category" name="category">
+            <option value="work">Work</option>
+            <option value="personal">Personal</option>
+            <option value="learning">Learning</option>
+          </select>
+          <button class="primary-button" type="submit">Add task <span aria-hidden="true">＋</span></button>
+        </form>
+
+        <div class="toolbar">
+          <div class="filter-tabs" role="tablist" aria-label="Filter tasks">
+            <button class="filter-tab is-active" type="button" role="tab" aria-selected="true" data-filter="all">All <span id="all-count">0</span></button>
+            <button class="filter-tab" type="button" role="tab" aria-selected="false" data-filter="active">Active <span id="active-count">0</span></button>
+            <button class="filter-tab" type="button" role="tab" aria-selected="false" data-filter="done">Done <span id="done-count">0</span></button>
+          </div>
+          <p class="shortcut-hint"><kbd>/</kbd> focus input</p>
+        </div>
+
+        <div class="task-list" id="task-list" aria-live="polite"></div>
+        <div class="empty-state" id="empty-state" hidden>
+          <span class="empty-state__orb" aria-hidden="true">✧</span>
+          <h3 id="empty-title">A clear page is a powerful start.</h3>
+          <p id="empty-copy">Add a task above and give your attention somewhere to land.</p>
+        </div>
+      </section>
+
+      <footer class="app-footer">
+        <span>Built with plain HTML, CSS, and JavaScript.</span>
+        <span>Made for a quieter kind of productivity.</span>
+      </footer>
+    </main>
+  </body>
+</html>
+
